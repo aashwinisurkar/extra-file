@@ -1,0 +1,265 @@
+import React, { useState } from 'react'
+import './Style.css';
+import {MdOutlineMenu,MdHome,MdRoundaboutRight ,MdContactPage,MdOutlineInsertDriveFile,MdOutlineSettingsApplications} from "react-icons/md";
+import { Link } from 'react-router-dom';
+function Sidebar({ openSidebarToggle, OpenSidebar }) {
+    const[active , setActive] =  useState();
+  return (
+    <aside id="sidebar" className={openSidebarToggle ? "sidebar-responsive" : ""}>
+     <div className=' sidenav  d-flex justify-content-between flex-column  alien-item-center text-white  mx-2  bg-dark py-3 ps-4 pe-5 '>
+    <div className=' sidenav-header  ml-1 mt-2'>
+        <a href='/'className =' navbar-brand text-white  text-decoration-none ' aria-hidden="true" id="sidenav-main">
+        <i className=' fs-4 me-1'><MdOutlineMenu/></i>
+        <span className='  fs-5  ms-1 font-weight-bold text-white  '><strong> Side-menu</strong></span>
+        </a>
+       
+        </div>
+        <hr className=' horizontal  text-secondary mt-5'/>
+             <ul className='nav nav-pills flex-column alien-item-center mt-2'>
+
+                <li className={active ===1 ? 'nav-item p-1 mt-1 mb-1' : "nav-item p-1 mt-1 mb-1"}
+            onClick={e => setActive(1)}>
+                    <Link to='./' className='  nav-link text-white ' aria-current="page" >
+                        <i className=' fs-4 me-2 p-0 '><MdHome /></i>
+                        <span className='fs-5 d-sm-inline'> Home</span>
+                        </Link>
+                </li>
+                <li className={active ===2 ? 'nav-item p-1 mt-1 mb-1' : "nav-item p-1 mt-1 mb-1"}
+            onClick={e => setActive(2)}>
+                    <Link to='./About'className='  nav-link text-white ' aria-current="page" >
+                        <i className=' fs-4 me-2 p-0'><MdRoundaboutRight /></i>
+                        <span className='fs-5  d-sm-inline'> About</span>
+                    </Link>
+                </li>
+                <li className={active ===3 ? 'nav-item p-1 mt-1 mb-1' : "nav-item p-1 mt-1 mb-1"}
+            onClick={e => setActive(3)}>
+                    <Link to='./Contact'className='  nav-link text-white ' aria-current="page" >
+                        <i className=' fs-4 me-2 p-0'><MdContactPage /></i>
+                        <span className='fs-5 d-sm-inline '> Contact</span>
+                        </Link>
+                </li>
+                <li className={active ===4 ? 'nav-item p-1 mt-1 mb-1' : "nav-item p-1 mt-1 mb-1"}
+            onClick={e => setActive(4)}>
+                    <Link to='./Report'className='  nav-link text-white ' aria-current="page" >
+                        <i className=' fs-4 me-2 p-1'><MdOutlineInsertDriveFile/></i>
+                        <span className='fs-5 d-sm-inline'>Report</span>
+                        </Link>
+                </li>
+                <li className={active ===5 ? 'nav-item p-1 mt-1 mb-1' : "nav-item p-1 mt-1 mb-1"}
+            onClick={e => setActive(5)}>
+                    <Link to='./Setting'className='  nav-link text-white ' aria-current="page" >
+                        <i className=' fs-4 me-2 p-1'><MdOutlineSettingsApplications/></i>
+                        <span className=' fs-5 d-sm-inline '>Setting</span>
+                        </Link>
+                </li>
+
+            </ul>
+            <hr className='text-secondary  mb-5'/>
+            <div className="dropdown open">
+                    <a  href='/'className="btn btn-secondary text-white dropdown-toggle" type='button' id='triggerld' data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i className="fa-regular fa-file   ms-1 fs-4"> </i>
+                        <span  className='fs-5 ms-3 d-none d-sm-inline'> additional</span>
+                    </a>
+                    <div className="dropdown-menu" aria-labelledby="triggerld">
+                        <a className="dropdown-item" href="/"><span className='d-sm-inline'> user</span>   </a>
+
+                        <a className="dropdown-item " href='/'><span className='d-s-inline'> setting</span>
+                        <span className='d-none d-sm-block'>Profile</span>
+                        </a>
+                    </div>
+                    </div>
+    </div>
+ </aside>
+       
+       
+           
+                   
+            
+    
+    
+        
+      )
+    }
+   
+export default Sidebar
+import React, { useState } from 'react';
+import Sidebar from '../Dashboard/Sidebar';
+import Navbar from '../Dashboard/Navbar';
+import Home from '../sidecomponent/Home';
+import { Routes, Route } from 'react-router-dom';
+import Contact from '../sidecomponent/Contact';
+import About from '../sidecomponent/About';
+import Report from '../sidecomponent/Report';
+import Setting from '../sidecomponent/Setting';
+
+const Dashboard = () => {
+  const [openSidebarToggle, setOpenSidebarToggle] = useState(false);
+  const [collapseNavbar, setCollapseNavbar] = useState(true); // State for collapsing navbar items
+
+  const handleSidebarToggle = () => {
+    setOpenSidebarToggle(!openSidebarToggle);
+  };
+
+  const handleNavbarCollapse = () => {
+    setCollapseNavbar(!collapseNavbar);
+  };
+
+  return (
+    <div className='d-flex'>
+      <div className='w-auto'>
+        <Sidebar openSidebarToggle={openSidebarToggle} OpenSidebar={handleSidebarToggle} />
+      </div>
+
+      <div className='container-fluid col-auto'>
+        <Navbar
+          openSidebarToggle={handleSidebarToggle}
+          collapseNavbar={collapseNavbar} // Pass the state and function to Navbar
+          handleNavbarCollapse={handleNavbarCollapse}
+        />
+
+        <div className=' col py-4 container-fluid overflow-auto'>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/About" element={<About />} />
+            <Route path="/Contact" element={<Contact />} />
+            <Route path="/Report" element={<Report />} />
+            <Route path="/Setting" element={<Setting />} />
+          </Routes>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Dashboard;
+
+
+
+import React, { useEffect, useState } from 'react';
+import Sidebar from '../Dashboard/Sidebar';
+import Navbar from '../Dashboard/Navbar';
+import Home from '../sidecomponent/Home';
+import { Routes, Route } from 'react-router-dom';
+import Contact from '../sidecomponent/Contact';
+import About from '../sidecomponent/About';
+import Report from '../sidecomponent/Report';
+import Setting from '../sidecomponent/Setting';
+
+const Dashboard = () => {
+  const [toggle, setToggle] = useState(false);
+  // State for collapsing navbar items
+
+  function  Toggle(){
+    setToggle(!toggle);
+
+  }
+
+  
+
+ 
+  useEffect(()=>{
+    const handleSize = () => {
+      if(window.innerWidth >768){
+        setToggle(false);
+
+      }
+      window.addEventListener('resize' , handleSize);
+
+      return () =>{
+        window.removeEventListener('resize', handleSize);
+      }
+    }
+
+  },[])
+
+  return (
+    <div className='d-flex'>
+      <div className={toggle ? "d-none" : "w-auto position-fixed"}>
+        <Sidebar  />
+      </div>
+      <div className={toggle ? "d-none" : "invisible"}>
+        <Sidebar  />
+      </div>
+
+      <div className='container-fluid col-auto'>
+        <Navbar Toggle={Toggle}/>
+
+        <div className=' col py-4 container-fluid overflow-auto'>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/About" element={<About />} />
+            <Route path="/Contact" element={<Contact />} />
+            <Route path="/Report" element={<Report />} />
+            <Route path="/Setting" element={<Setting />} />
+          </Routes>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Dashboard;
+
+
+
+import React from 'react';
+import './Style.css';
+import 'bootstrap/dist/js/bootstrap.bundle.js';
+function Navbar({ Toggle }) {
+ 
+  return (
+    <nav className='navbar navbar-expand-lg navbar-dark bg-dark'>
+      <div className='container-fluid ml-0'>
+
+      <a className='navbar-brand d-none d-md-block' href='#/'>
+          Navbar
+        </a>
+        <a href='/' className='navbar-brand  text-white d-none d-md-none ' onClick={ Toggle} >
+          <i className='bi bi-justify'></i>
+        </a>
+
+       
+        
+
+        <button
+          className='navbar-toggler text-white d-md-block d-lg-none'
+          type='button'
+          data-bs-toggle='collapse'
+          data-bs-target='#collapsNavId'
+          aria-controls='collapsNavId'
+          aria-expanded='false'
+          aria-label='Toggle navigation'
+        >
+          <span className='navbar-toggler-icon'></span>
+        </button>
+
+        <div className='collapse navbar-collapse  justify-content-end' id='collapsNavId'>
+          <ul className='navbar-nav justify-content-end ms-auto mb-2 mb-lg-0'>
+            <li className='nav-item rounded border'>
+              <a className='nav-link text-white active' href='/' aria-current='page'>
+                <i className='bi bi-search'></i>Search
+              </a>
+            </li>
+
+            <li className='nav-item rounded border'>
+              <a className='account nav-link text-white' href='/' aria-current='page'>
+                Account
+              </a>
+            </li>
+
+            <li className='nav-item rounded border'>
+              <a className='logout nav-link text-white' href='/' aria-current='page'>
+                Logout
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  );
+
+}
+
+export default Navbar;
+
+

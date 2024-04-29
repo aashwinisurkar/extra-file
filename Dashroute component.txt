@@ -1,0 +1,343 @@
+DASHCOMPONENT
+
+
+import React from 'react'
+import './Dashcom.css';
+import {MdOutlineMenu, MdDashboard,MdHome,MdRoundaboutRight ,MdContactPage,MdOutlineInsertDriveFile,MdOutlineSettingsApplications} from "react-icons/md";
+import { Link } from 'react-router-dom';
+const Sidebar = () => {
+  return (
+
+       
+        <aside className='sidenav  sidebar sidebar-vertical sidebar-expand-sm  border-0 fixed-start ' id="sidenav-main">
+            <div className=' sider d-flex  flex-column  alien-item-center text-white  bg-dark'>
+                <div className=' smenu sidenav-header  ml-1 mt-2'>
+                    <a href='/'className =' navbar-brand text-white  ' aria-hidden="true" id="sidenav-main">
+                    <i className=' ml-2 fs-2 me-1'><MdOutlineMenu/></i>
+                    <span className='  fs-5  ms-1 font-weight-bold text-white  '><strong> Side-menu</strong></span>
+                    </a>
+                    </div>
+                    <hr className=' horizontal  text-secondary mt-5'/>
+                         <ul className='nav nav-pills flex-column alien-item-center mt-2'>
+                        
+                        <li className='nav-item p-1 mt-1 mb-1'aria-current="page">
+                                <Link to='./' className='  nav-link text-white ' aria-current="page" >
+                                    <i className='  fs-4 me-2 p-0'><MdDashboard /></i>
+                                    <span className='fs-5  d-sm-inline'>Dashboard</span>
+                                    </Link>
+                            </li>
+                            <li className='nav-item p-1  mt-3 mb-1' aria-current="page">
+                                <Link to='./Home' className='  nav-link text-white ' aria-current="page" >
+                                    <i className=' fs-4 me-2 p-0 '><MdHome /></i>
+                                    <span className='fs-5 d-sm-inline'> Home</span>
+                                    </Link>
+                            </li>
+                            <li className='nav-item p-1 mt-3 mb-1' aria-current="page">
+                                <Link to='./About'className='  nav-link text-white ' aria-current="page" >
+                                    <i className=' fs-4 me-2 p-0'><MdRoundaboutRight /></i>
+                                    <span className='fs-5  d-sm-inline'> About</span>
+                                </Link>
+                            </li>
+                            <li className='nav-item p-1  mt-3 mb-1' aria-current="page">
+                                <Link to='./Contact'className='  nav-link text-white ' aria-current="page" >
+                                    <i className=' fs-4 me-2 p-0'><MdContactPage /></i>
+                                    <span className='fs-5 d-sm-inline '> Contact</span>
+                                    </Link>
+                            </li>
+                            <li className='nav-item p-1  mt-3 mb-1' aria-current="page">
+                                <Link to='./Report'className='  nav-link text-white ' aria-current="page" >
+                                    <i className=' fs-4 me-2 p-1'><MdOutlineInsertDriveFile/></i>
+                                    <span className='fs-5 d-sm-inline'>Report</span>
+                                    </Link>
+                            </li>
+                            <li className='nav-item p-1 mt-3 mb-1' aria-current="page">
+                                <Link to='./Setting'className='  nav-link text-white ' aria-current="page" >
+                                    <i className=' fs-4 me-2 p-1'><MdOutlineSettingsApplications/></i>
+                                    <span className=' fs-5 d-sm-inline '>Setting</span>
+                                    </Link>
+                            </li>
+        
+                        </ul>
+                        <hr className='text-secondary  mb-5'/>
+                        <div className="dropdown open">
+                                <a  href='/'className="btn btn-secondary text-white dropdown-toggle" type='button' id='triggerld' data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i className="fa-regular fa-file   ms-1 fs-4"> </i>
+                                    <span  className='fs-5 ms-3 d-none d-sm-inline'> additional</span>
+                                </a>
+                                <div className="dropdown-menu" aria-labelledby="triggerld">
+                                    <a className="dropdown-item" href="/"><span className='d-sm-inline'> user</span>   </a>
+        
+                                    <a className="dropdown-item " href='/'><span className='d-s-inline'> setting</span>
+                                    <span className='d-none d-sm-block'>Profile</span>
+                                    </a>
+                                </div>
+                                </div>
+                </div>
+                   
+            
+    
+        </aside>
+        
+      )
+    }
+   
+export default Sidebar
+
+
+
+NAVABAR======================================================
+import {React} from 'react'
+import './Dashcom.css';
+import{BsPersonCircle}from "react-icons/bs";
+// import{ BsSearch, }from "react-icons/bs";
+
+import { useNavigate } from 'react-router-dom';
+
+const Navbar = () => {
+
+  const navigate = useNavigate();
+  const handleLogoutClick=() =>{
+    navigate('/Regup ');}
+  
+  
+  return (
+    <header className='header header-container navbar-expand-lg bd-navbar  container-fluid   '>
+ 
+    {/* <nav className="navbar container-fluid flex-wrap  border-radius-xl"  > */}
+      {/* <div  className='collapse navbar-collapse'> */}
+       <div className='header-box ' >
+               <div className='header-title  '>
+                  <h3><span className='Dash'>Dashboard</span></h3>
+               </div>
+
+        <div className='  container-right'> 
+            {/* <a  className='  ' href='#/'> <i className=' logo me-3 fs-4 '><BsFillBellFill/></i> </a>
+            <a className='' href='#/'><i className=' logo me-3 fs-4'><BsFillEnvelopeFill/></i> </a> */}
+
+           <a className='user-a ' href='#/'><i className=' user  me-3  fs-4'><BsPersonCircle/>user</i> </a>
+          
+           </div>
+
+           <a href='#/' className='btnnn'  onClick={handleLogoutClick}> Logout</a>
+
+
+           {/* <a href='#/' className='btn btn-outline btn-outline-balck  fs-5'  onClick={handleLogoutClick}> Logout</a> */}
+           {/* <a href='#/'><button className='btn btn-outline-black'></button> </a>                            */}
+           </div>
+        
+{/* 
+          </div> */}
+
+          
+            
+        
+              
+             
+       
+            
+          
+            
+            
+            {/* <a  className=' navvv text-white' href='#/'> <i className=''><BsFillBellFill/></i> </a>
+            <a className='  navvv text-white' href='#/'><i className=''><BsFillEnvelopeFill/></i> </a>
+           <a className='  navvv text-white' href='#/'><i className=''><BsPersonCircle/></i> </a>
+            </div> */}
+            
+        
+             {/* <div className=''>
+             <button className='btn btn-outline btn-outline-balck  on' onClick={handleLoginClick}> <span> Logout</span></button>
+            </div> */}
+
+       
+
+
+    {/* </nav> */}
+    </header>
+
+  )
+}
+
+export default Navbar
+
+
+
+
+CSSS====================================
+/* Navbarcsss */
+
+.header{
+    z-index: 1;
+    position:fixed;
+    align-items: center;
+    display: flex;
+     /* margin-left: 220px; */
+    left: 220px;
+    width: 90%;
+    height: 70px;
+    padding: 15px;
+    align-items: center;
+    background-color: #89788c;
+    box-shadow: 0 6px 7px -3px rgb(0,0,0,0.35);
+}
+.header-box{
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   flex-wrap: wrap;
+   border-radius: 10px;
+
+}
+.header-title{
+    position: flex;
+}
+.header-title:hover{
+    background-color: blue;
+    padding: 9px;
+    
+}
+.container-right{
+    position: absolute;
+    display: flex;
+    margin-left :720px;
+   
+    
+}
+.btnnn{
+    background-color:red;
+    padding: 9px;
+    justify-content: end;
+    margin-left: 1000px;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+
+}
+.btnnn:hover{
+    background-color: darkmagenta;
+    padding: 9px;
+    
+}
+.logo{
+    margin-left: 0px;
+    text-decoration: none;
+    padding:  9px;
+    color: white;
+}
+.user{ 
+    text-decoration: none;
+    margin-left: 300px;
+    padding: 7px;
+    color: white;
+    background-color:blue ;
+    border-radius: 5px;
+
+}
+.user:hover{
+    background-color:purple;
+    padding: 7px;
+}
+
+
+
+
+/* --------------------SIDENAVCSS----------------- */
+.smenu:hover{
+
+ background-color: rgb(51, 31, 176);
+}
+.sidenav {
+    z-index: 1;
+    position:fixed;
+    left: 0%;
+    margin-left: 0%;
+}
+.sider{
+     position: absolute;
+   bottom: 100px;
+    height:750px;
+    width: 220px;
+    top: 0px;
+    left: 0px;
+
+   
+
+}
+ 
+.nav-item:hover{
+    background-color:darkviolet;
+    border-radius: 5px;
+}
+
+
+
+ /* a{margin-left: 40px;
+    text-decoration: none;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+
+} */
+ul li Link{color: white;
+
+border-radius: 5px;}
+.active{
+    background-color:darkviolet;
+    border-radius: 5px;
+
+
+}
+li Link{
+    text-decoration: none;
+}
+
+
+/* =================FOOTERCSS=============================== */
+.footer{
+   position: fixed;
+
+    left: 220px;
+    width: 90%;
+    height: 70px;
+    align-items: flex-end;
+  bottom: 0%;
+
+}
+/* ================WELCOM============= */
+.Aboute{
+    position: fixed;
+    left: 220px;
+    width: 90%;
+    height: 620px;
+    top: 70px;
+    bottom: 70px;
+}
+.a1{
+    position: absolute;
+    top: 20%;
+    left: 150px;
+    height: 250px;
+    width: 70%;
+    /* background-color:rgba(red, rgb(128, 132, 128), blue, alpha) ; */
+    align-items: center;
+}
+h1{
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: black;
+}
+
+.navvv{
+    margin-right: 7px;
+}
+    /* margin-left:250%; */
+    /* ; */
+    /* margin-left: 300px; */
+   
+
+.navbar-nav{
+    display:block;
+    margin-left: 1100px;
+    margin-bottom: 30px;
+}
+
